@@ -1,0 +1,62 @@
+/**
+ * 
+ */
+package com.atguigu.crowd.mvc.handler;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.entity.Admin;
+import com.atguigu.crowd.service.api.AdminService;
+import com.github.pagehelper.PageInfo;
+
+/**
+ * @ClassName: AdminHadnler
+ * @Description: 描述这个类的作用
+ * @author: zhuyuqi
+ * @Company: http://sk370.github.io
+ * @date: 2022年9月1日 上午9:47:48
+ * @param:
+ */
+@Controller
+public class AdminHadnler {
+    @Autowired
+    private AdminService adminService;
+
+    @RequestMapping("/admin/do/logout.html")
+    public String doLogout(HttpSession httpSession) {
+        httpSession.invalidate();// 强制让session失效
+        return "redirect:/admin/to/login/page.html";
+    }
+
+    @RequestMapping("/admin/do/login.html")
+    public String doLogin(@RequestParam("loginAcct") String loginAcct, @RequestParam("userPwd") String userPswd,
+        HttpSession httpSession) {
+        Admin admin = adminService.getAdminByLoginAcct(loginAcct, userPswd);
+        httpSession.setAttribute(CrowdConstant.ATTR_LOGIN_NAME_ADMIN, admin);
+        // return "admin-main";//请求转发，刷新页面会重新提交表单
+        // return "redirect:/WE-INF/admin-main";//重定向，解决重复提交表单，但是前端请求不能发到/web-inf路径下（访问不到）
+        return "redirect:/admin/to/main/page.html";// 让springdispatchservlet处理
+    }
+
+    @RequestMapping("/admin/get/page.html")
+    public String getPageInfo(@RequestParam(value = "keyword", defaultValue = "") String keyword,
+        @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+        @RequestParam(value = "pageSize", defaultValue = "5") Integer PageSize, ModelMap modelMap) {
+        PageInfo<Admin> pageInfo = adminService.getPageInfo(keyword, pageNum, PageSize);
+        modelMap.addAttribute(CrowdConstant.ATTR_NAME_PAGE_INFO, pageInfo);
+        return "admin-page";
+    }
+    
+    @RequestMapping("admin/remove/{adminId}.html")
+    public String remove(@PathVariable("adminId")) {
+        
+    }
+}

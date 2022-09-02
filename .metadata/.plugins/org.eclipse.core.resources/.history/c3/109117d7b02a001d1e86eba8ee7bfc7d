@@ -1,0 +1,6 @@
+/**
+ * 给ztree生成的树形结构，更换图标
+ */
+ function myAddDom(treeId, treeNode){
+	
+}

@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+package com.atguigu.crowd.service.impl;
+
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.atguigu.crowd.constant.CrowdConstant;
+import com.atguigu.crowd.entity.Admin;
+import com.atguigu.crowd.entity.AdminExample;
+import com.atguigu.crowd.entity.AdminExample.Criteria;
+import com.atguigu.crowd.exception.LoginFailedException;
+import com.atguigu.crowd.mapper.AdminMapper;
+import com.atguigu.crowd.service.api.AdminService;
+import com.atguigu.crowd.util.CrowdUtil;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
+/**
+ * @ClassName: AdminServiceImpl
+ * @Description: TODO
+ * @author zhuyuqi
+ * @date 2022年8月31日
+ */
+@Service
+public class AdminServiceImpl implements AdminService {
+    @Autowired
+    private AdminMapper adminMapper;
+
+    @Override
+    public void saveAdmin(Admin admin) {
+        // TODO Auto-generated method stub
+        adminMapper.insert(admin);
+    }
+
+    @Override
+    public List<Admin> getAll() {
+        // TODO Auto-generated method stub
+        return adminMapper.selectByExample(new AdminExample());
+    }
+
+    @Override
+    public Admin getAdminByLoginAcct(String loginAcct, String userPswd) {
+        // TODO Auto-generated method stub
+        AdminExample adminExample = new AdminExample();
+        Criteria criteria = adminExample.createCriteria();
+        criteria.andLoginAcctEqualTo(loginAcct);// sql拼接条件，value等于loginAcct
+        List<Admin> adminList = adminMapper.selectByExample(adminExample);
+
+        if (adminList == null || adminList.size() == 0) {
+            throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILD);
+        }
+        if (adminList.size() > 1) {
+            throw new LoginFailedException(CrowdConstant.MESSAGE_SYSTEM_ERROR_LOGIN_NOT_UNIQUE);
+        }
+
+        Admin admin = adminList.get(0);
+        if (admin == null) {
+            throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_FAILD);
+        }
+        String userPswdDB = admin.getUserPswd();// 从数据库取出加密密码
+        String userPswdForm = CrowdUtil.md5(userPswd);// 使用md5加密表单提交密码
+
+        if (!Objects.equals(userPswdDB, userPswdForm)) {
+            throw new LoginFailedException(CrowdConstant.MESSAGE_LOGIN_MESSAGE_NOT_EQUAL);
+        }
+
+        return admin;
+    }
+
+    @Override
+    public PageInfo<Admin> getPageInfo(String keyword, Integer pageNum, Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        List<Admin> list = adminMapper.selectAdminByKeyword(keyword);
+
+        // TODO Auto-generated method stub
+        return new PageInfo<>(list);
+    }
+
+}

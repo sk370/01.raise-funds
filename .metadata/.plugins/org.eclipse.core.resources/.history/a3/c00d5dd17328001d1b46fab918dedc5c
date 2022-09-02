@@ -1,0 +1,8 @@
+package com.atguigu.crowd.test;
+
+import org.springframework.context.annotation.Configuration;
+
+@ContextC()
+public class CrowdTest {
+
+}

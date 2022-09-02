@@ -1,0 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>临时登录页</h1>
+
+		<h3 style="text-align:center">1 ${ requestScope.loginAdmin }</h3>
+		<h3 style="text-align:center">2 ${ requestScope.loginAdmin.userName }</h3>
+	${ requestScope.loginAdmin }
+	${ requestScope.loginAdmin.userName }
+</body>
+</html>

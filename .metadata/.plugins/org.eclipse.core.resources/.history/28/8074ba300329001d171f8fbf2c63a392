@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<base href=""/>
+</head>
+<body>
+	<a href="${pageContext.request.contextPath}/test/ssm.html">测试ssm整合</a>
+	
+	<%= pageContext.getServletContext().getContextPath()  %>
+	<jsp:expression> pageContext.getServletContext().getContextPath()</jsp:expression>
+${pageContext.request.scheme }
+${ pageContext.request.serverName}
+${ pageContext.request.serverPort}
+${ pageContext.request.contextPath}
+${ pageContext.request.method}
+
+
+${request.getScheme }
+${request.scheme }
+
+${request.getServerName()}
+
+${requeset.getServerPort()}
+
+${request.getContextPath()}
+
+${request.method}
+
+	
+</body>
+</html>

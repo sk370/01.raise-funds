@@ -1,0 +1,6 @@
+package com.atguigu.crowd.test;
+
+@ContextConfiguration
+public class CrowdTest {
+
+}

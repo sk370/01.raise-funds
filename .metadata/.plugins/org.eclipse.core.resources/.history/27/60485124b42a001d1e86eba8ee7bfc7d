@@ -1,0 +1,15 @@
+/**
+ * 给ztree生成的树形结构，更换图标
+ */
+ // treeId 树形结构的根结点
+ // treeNode 当前正在生成的节点
+ function myAddDom(treeId, treeNode){
+	console.log(treeId)
+	console.log(treeNode)
+	//class="glyphicon-check"
+	var spanId = treeNode.tId + "_ico"// 获取ztree的图标id
+	
+	$("#" + spanId)
+		.removeClass()//移除默认的class
+		.addClass(treeNode.icon)//更换为数据库的图标
+}

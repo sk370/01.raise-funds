@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.atguigu.crowd.service.impl;
+
+/**
+ * @ClassName: AdminServiceImpl
+ * @Description: TODO
+ * @author zhuyuqi
+ * @date 2022年8月31日
+ *
+ */
+public class AdminServiceImpl {
+
+}

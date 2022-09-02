@@ -1,0 +1,4 @@
+boot-java.console.enabled=true
+cloudfoundry.console.enabled=true
+concourse.console.enabled=true
+eclipse.preferences.version=1

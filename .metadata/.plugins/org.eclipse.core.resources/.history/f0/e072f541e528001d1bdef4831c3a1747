@@ -1,0 +1,36 @@
+/**
+ * 
+ */
+package com.atguigu.crowd.mvc.handler;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.atguigu.crowd.entity.Admin;
+import com.atguigu.crowd.service.api.AdminService;
+
+/**
+ * @ClassName: TestHandler
+ * @Description: 描述这个类的作用
+ * @author: zhuyuqi
+ * @Company: http://sk370.github.io
+ * @date: 2022年8月31日 下午12:15:42
+ * @param:
+ */
+@Controller
+public class TestHandler {
+    @Autowired
+    private AdminService adminService;
+
+    @RequestMapping("/test/ssm.html")
+    public String testSssm(ModelMap modelMap) {
+        List<Admin> list = adminService.getAll();
+        modelMap.addAttribute("list", list);
+        return "ssm.html";
+    }
+
+}
