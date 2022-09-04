@@ -33,4 +33,16 @@ public interface RoleService {
      * @param roleIdList
      */
     void removeByRoleIdAarry(List<Integer> roleIdList);
+
+    /**
+     * @param adminId
+     * @return
+     */
+    List<Role> getAssingedRole(Integer adminId);
+
+    /**
+     * @param adminId
+     * @return
+     */
+    List<Role> getUnAssignedRole(Integer adminId);
 }

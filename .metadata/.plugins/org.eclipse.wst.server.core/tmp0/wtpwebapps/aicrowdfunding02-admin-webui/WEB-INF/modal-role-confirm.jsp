@@ -13,7 +13,7 @@
 				<span id="roleNameSpan"></span>
 			</div>
 			<div class="modal-footer">
-				<button id="batchDeleteBtn" type="button" class="btn btn-primary">取确认删除</button>
+				<button id="deleteBtn" type="button" class="btn btn-primary">取确认删除</button>
 			</div>
 		</div>
 	</div>

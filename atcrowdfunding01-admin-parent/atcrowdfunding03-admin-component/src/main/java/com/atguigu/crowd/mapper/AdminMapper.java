@@ -31,4 +31,19 @@ public interface AdminMapper {
     int updateByPrimaryKey(Admin record);
 
     List<Admin> selectAdminByKeyword(String keyword);
+
+    /**
+     * 自定义删除用户角色
+     * 
+     * @param adminId
+     */
+    void deleteRelationship(Integer adminId);
+
+    /**
+     * 自定义保存用户角色
+     * 
+     * @param adminId
+     * @param roleIdList
+     */
+    void saveRelationship(@Param("adminId") Integer adminId, @Param("roleIdList") List<Integer> roleIdList);// 由于mapper.xml中使用到了foreach标签遍历roleIdList，而roleIdList是自定义标签，所以需要使用@param注解
 }

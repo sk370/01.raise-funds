@@ -42,4 +42,10 @@ public interface AdminService {
      */
     void update(Admin admin);
 
+    /**
+     * @param adminId
+     * @param roleIdList
+     */
+    void updateRelationShip(Integer adminId, List<Integer> roleIdList);
+
 }

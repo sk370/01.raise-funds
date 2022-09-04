@@ -4,10 +4,15 @@
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="generateNavigator"/>
+		<item key="selection" value="length"/>
 		<item key="wrap" value="true"/>
 		<item key="incremental" value="false"/>
 		<list key="findhistory">
+			<item value="length"/>
+			<item value="roleIdArray"/>
+			<item value="showConfirmModal"/>
+			<item value="confirm"/>
+			<item value="comfirm"/>
 			<item value="generateNavigator"/>
 			<item value="window.location"/>
 			<item value="window"/>
@@ -18,11 +23,6 @@
 			<item value="inputSuccess4"/>
 			<item value="pagination"/>
 			<item value="max"/>
-			<item value="maxentires"/>
-			<item value="initPagination"/>
-			<item value="pagehe"/>
-			<item value="zero"/>
-			<item value="scheme"/>
 		</list>
 		<list key="replacehistory">
 		</list>

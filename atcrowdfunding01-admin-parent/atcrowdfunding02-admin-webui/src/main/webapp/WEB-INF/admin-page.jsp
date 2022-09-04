@@ -103,14 +103,14 @@
 												<td>${admin.userName }</td>
 												<td>${admin.email }</td>
 												<td>
-													<a href="" class="btn btn-success btn-xs">
+													<a href="assign/to/assign/role/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" class="btn btn-success btn-xs" title="设置角色">
 														<i class=" glyphicon glyphicon-check"></i>
 													</a>
-													<a href="admin/to/edit/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" type="button" class="btn btn-primary btn-xs">
+													<a href="admin/to/edit/page.html?adminId=${admin.id}&pageNum=${requestScope.pageInfo.pageNum}&keyword=${param.keyword}" type="button" class="btn btn-primary btn-xs" title="修改信息">
 														<i class=" glyphicon glyphicon-pencil"></i>
 													</a>
 													<!-- 这里不能使用param.pageNum，因为第一页、查询页码只有1一页展示的时候路径没有pageNum参数 -->
-													<a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html" type="button" class="btn btn-danger btn-xs">
+													<a href="admin/remove/${admin.id}/${requestScope.pageInfo.pageNum}/${param.keyword}.html" type="button" class="btn btn-danger btn-xs" title="删除角色">
 														<i class=" glyphicon glyphicon-remove"></i>
 													</a>
 												</td>

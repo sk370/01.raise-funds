@@ -23,4 +23,19 @@ public interface MenuService {
      */
     List<Menu> getAll();
 
+    /**
+     * @param menu
+     */
+    void save(Menu menu);
+
+    /**
+     * @param menu
+     */
+    void update(Menu menu);
+
+    /**
+     * @param id
+     */
+    void delete(Integer id);
+
 }

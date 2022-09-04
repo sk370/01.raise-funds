@@ -1,12 +1,51 @@
 /**
  * 给ztree生成的树形结构，更换图标
  */
+ 
+ //生成树形结构
+ function generateTree(){
+	var setting = {//1.ztree的初始化数据，存放ztree的设置
+		view: {
+			"addDiyDom": myAddDom,//修改图标
+			"addHoverDom": myAddHoverDom,//鼠标移入显示操作图标
+			"removeHoverDom": myRemoveHoverDom,//鼠标移除隐藏操作图标
+			
+		},
+		"data": {			//禁用点击跳转
+			"key": {
+			"url": "maomi"//任意一个名字，主要是问了禁用跳转
+			}
+		}
+	}
+	
+	var zNodes = [];//2. 页面数据
+	$.ajax({
+		"url" : "menu/get/whole/tree.json",
+		"type" : "post",
+		"dataType" : "json",
+		"success" : function(response) {
+			var result = response.result
+			if (result == "SUCCESS") {
+				layer.msg("操作成功")
+				zNodes = response.data
+				$.fn.zTree.init($("#treeDemo"), setting, zNodes)//3. 在页面初始化树形结构
+			}
+			if (result == "FAILED") {
+				layer.msg("获取失败，" + response.message)
+			}
+		},
+		"error" : function(response) {
+			layer.msg(response.status + "，说明信息：" + response.statusText)
+		}
+	})
+}
+ 
 // treeId 树形结构的根结点
 // treeNode 当前正在生成的节点
 function myAddDom(treeId, treeNode) {
-	console.log(treeId)
-	console.log(treeNode)
-	//class="glyphicon-check"
+	//console.log(treeId)
+	//console.log(treeNode)
+	
 	var spanId = treeNode.tId + "_ico"// 获取ztree的图标id
 
 	$("#" + spanId)
@@ -24,19 +63,19 @@ function myAddHoverDom(treeId, treeNode) {
 	
 	// 3种按钮的 HTML 标签
 	var addBtn = `
-		<a id=${treeNode.id} class="btn btn-info dropdown-toggle btn-xs" style="margin-left:6px;padding-top:0px;padding:0 4px;" href="#" title="添加子节点">
+		<a id=${treeNode.id} class="btn btn-info dropdown-toggle btn-xs addBtn" style="margin-left:6px;padding-top:0px;padding:0 4px;" href="#" title="添加子节点">
 			<i class="fa fa-fw fa-plus rbg"></i>
 		</a>
 	`
 	
 	var removeBtn = `
-		<a id=${treeNode.id} class="btn btn-info dropdown-toggle btn-xs" style="margin-left:6px;padding-top:0px;padding:0 4px;" href="#" title="移除节点">
+		<a id=${treeNode.id} class="btn btn-info dropdown-toggle btn-xs removeBtn" style="margin-left:6px;padding-top:0px;padding:0 4px;" href="#" title="移除节点">
 			<i class="fa fa-fw fa-times rbg"></i>
 		</a>
 	`
 	
 	var editBtn = `
-		<a id=${treeNode.id} class="btn btn-info dropdown-toggle btn-xs" style="margin-left:6px;padding-top:0px;padding:0 4px;" href="#" title="修改节点">
+		<a id=${treeNode.id} class="btn btn-info dropdown-toggle btn-xs editBtn" style="margin-left:6px;padding-top:0px;padding:0 4px;" href="#" title="修改节点">
 			<i class="fa fa-fw fa-edit rbg"></i>
 		</a>
 	`

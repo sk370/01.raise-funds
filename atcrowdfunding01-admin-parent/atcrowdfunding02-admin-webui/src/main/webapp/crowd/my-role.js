@@ -2,7 +2,77 @@
  * 配合ajax请求展示分页数据，以及显示删除模态框
  */
  
- window.roleIdArray = [];
+ // 生成分配权限模态框中全选的树形结构
+ function fillAuthTree(){
+	// 查询auth的数据
+	var ajaxResult = $.ajax({
+		"url": "assign/get/all/auth.json",
+		"type": "post",
+		"dataType":"json",
+		"async": false		
+	})
+	
+	if(ajaxResult.status != 200){
+		layer.msg("获取失败，" + ajaxResult.statusText)
+		return;
+	}
+	
+	var authList = ajaxResult.responseJSON.data
+	
+	var setting= {//设置zTree
+		"data": {
+			"simpleData":{
+				"enable":true,//开启ztee简单json数据格式的功能
+				"pIdKey":"categoryId"//zTree默认使用pid属性，这里修改为使用categoryId属性
+			},
+			"key":{
+				"name" : "title"//ztree默认使用name属性，这里修改为使用title属性
+			}
+		},
+		"check":{
+			"enable": true//设置复选框，false表示单选框
+		}
+	};
+					
+	//生成树形结构
+	$.fn.zTree.init($("#authTreeDemo"), setting, authList)
+	//console.log(authList)
+	
+	//调用ztreobj的方法，将节点设置为默认展开状态
+	var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo")
+	zTreeObj.expandAll(true)
+	console.log(window.roleId)
+	// 查询已分配的Auth的id组成的数组，用于首页显示
+	var ajaxAuthId = $.ajax({
+		"url":"assign/get/assignedAuthId/by/roleId.json",
+		"type": "post",
+		"data":{
+			"roleId":window.roleId
+		},
+		"dataType":"json",
+		"async":false
+	})
+	
+	if(ajaxAuthId.status != 200){
+		layer.msg("获取失败，" + ajaxResult.statusText)
+		return;
+	}
+	var authIdArray = ajaxAuthId.responseJSON.data
+	// 将已分配的Auth的id组成的数组添加到树形结构中
+	for(var i= 0; i < authIdArray.length; i++){
+		var authId = authIdArray[i]
+		
+		var treeNode = zTreeObj.getNodeByParam("id", authId)//使用zTree的api获取树形结构中authId对应的节点
+		var checked = true//将treeNode节点设置为勾选
+		var checkTypeFlag = false//设置该节点与父节点的关系为不联动——避免回显数据勾的父节点，导致所有子节点被勾选
+		zTreeObj.checkNode(treeNode, checked, checkTypeFlag)
+	}
+	
+}
+ 
+ 
+ 
+ window.roleIdArray = [];//保存删除时的多选role的id
  
 // 生成分页
 function generatePage() {
@@ -24,7 +94,7 @@ function getPageIfoRemote() {
 		"async": false,
 		"dataType": "json"
 	})
-	console.log(ajaxResult)
+	//console.log(ajaxResult)
 	var statusCode = ajaxResult.status
 
 	if (statusCode != 200) {
@@ -70,11 +140,11 @@ function fillTableBody(pageInfo) {
 				<td><input id=${roleId} class="itemBox" type="checkbox"></td>
 				<td>${roleName}</td>
 				<td>
-					<button type="button" class="btn btn-success btn-xs">
+					<button id=${roleId} type="button" class="btn btn-success btn-xs checkButton">
 						<i class=" glyphicon glyphicon-check"></i>
 					</button>
 					<button id=${roleId} type="button" class="btn btn-primary btn-xs editRoleButton">
-						<i class=" glyphicon glyphicon-pencil deleteRoleButton"></i>
+						<i class=" glyphicon glyphicon-pencil"></i>
 					</button>
 					<button id=${roleId} type="button" class="btn btn-danger btn-xs deleteRoleButton">
 						<i class=" glyphicon glyphicon-remove"></i>

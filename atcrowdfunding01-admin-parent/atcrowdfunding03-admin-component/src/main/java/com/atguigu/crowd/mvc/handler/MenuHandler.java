@@ -11,6 +11,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.atguigu.crowd.entity.Menu;
@@ -29,6 +30,45 @@ import com.atguigu.crowd.util.ResultEntity;
 public class MenuHandler {
     @Autowired
     private MenuService menuService;
+
+    /**
+     * 删除节点
+     * 
+     * @param menu
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/menu/delete.json")
+    public ResultEntity<String> delete(@RequestParam("id") Integer id) {
+        menuService.delete(id);
+        return ResultEntity.successWithoutData();
+    }
+
+    /**
+     * 修改节点
+     * 
+     * @param menu
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/menu/update.json")
+    public ResultEntity<String> update(Menu menu) {
+        menuService.update(menu);
+        return ResultEntity.successWithoutData();
+    }
+
+    /**
+     * 添加节点
+     * 
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/menu/save.json")
+    public ResultEntity<String> save(Menu menu) {
+        System.out.println(menu);
+        menuService.save(menu);
+        return ResultEntity.successWithoutData();
+    }
 
     /**
      * 优化组装树形结构

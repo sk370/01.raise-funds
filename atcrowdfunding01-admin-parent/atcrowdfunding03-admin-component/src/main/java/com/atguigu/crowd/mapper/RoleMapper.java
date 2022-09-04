@@ -37,4 +37,20 @@ public interface RoleMapper {
      * @return
      */
     List<Role> selectRoleByKeyword(String keyword);
+
+    /**
+     * 自定义查询当前用户已分配角色
+     * 
+     * @param adminId
+     * @return
+     */
+    List<Role> getAssingedRole(Integer adminId);
+
+    /**
+     * 自定义查询当前用户未分配角色
+     * 
+     * @param adminId
+     * @return
+     */
+    List<Role> getUnAssignedRole(Integer adminId);
 }

@@ -36,7 +36,7 @@
 				<artifactId>spring-test</artifactId>
 				<version>${atguigu.spring.version}</version>
 			</dependency>
-			
+									
 			<!-- spring aop功能，事务的基础包-->
 			<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 			<dependency>

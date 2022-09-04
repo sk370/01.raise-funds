@@ -103,6 +103,11 @@
 		from t_admin
     where id = #{id,jdbcType=INTEGER}
 	</select>
+	<!-- 自定义删除用户角色 -->
+	<delete id="deleteRelationship">
+		delete from inner_admin_role where admin_id=#{adminId}
+	</delete>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from t_admin
     where id = #{id,jdbcType=INTEGER}
@@ -113,6 +118,13 @@
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
+	<!-- 自定义保存用户角色 -->
+	<insert id="saveRelationship">
+		insert into inner_admin_role(admin_id,role_id) values
+		<foreach collection="roleIdList" item="roleId" separator=",">(#{adminId},#{roleId})
+		</foreach>
+	</insert>
+	
 	<insert id="insert" parameterType="com.atguigu.crowd.entity.Admin">
     insert into t_admin (id, login_acct, user_pswd, 
       user_name, email, create_time

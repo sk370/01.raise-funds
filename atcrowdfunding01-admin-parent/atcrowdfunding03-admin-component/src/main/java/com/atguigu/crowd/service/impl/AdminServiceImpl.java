@@ -114,4 +114,12 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
+    @Override
+    public void updateRelationShip(Integer adminId, List<Integer> roleIdList) {
+        adminMapper.deleteRelationship(adminId);
+        if (roleIdList != null && roleIdList.size() != 0) {
+            adminMapper.saveRelationship(adminId, roleIdList);
+        }
+    }
+
 }

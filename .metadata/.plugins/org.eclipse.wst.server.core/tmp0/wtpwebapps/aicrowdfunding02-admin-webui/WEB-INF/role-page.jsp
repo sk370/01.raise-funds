@@ -5,7 +5,10 @@
 <%@include file="/WEB-INF/include-head.jsp"%>
 <link rel="stylesheet" href="css/pagination.css" />
 <script src="jquery/jquery.pagination.js"></script>
+<link rel="stylesheet" href="ztree/zTreeStyle.css"/>
+<script type="text/javascript" src="ztree/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript" src="crowd/my-role.js"></script>
+
 <script>
 	$(function() {
 		// 1.分页的初始化数据
@@ -132,7 +135,7 @@
 		
 		
 		//删除时的确认按钮功能
-		$("#batchDeleteBtn").click(function(){
+		$("#deleteBtn").click(function(){
 			
 			var requestBody = JSON.stringify(window.roleIdArray)
 			
@@ -170,6 +173,53 @@
 			var checkedBoxCount = $(".itemBox:checked").length
 			var totalBoxCount = $(".itemBox").length
 			$("#selectAll").prop("checked", checkedBoxCount == totalBoxCount)
+		})
+		
+		//分配权限的模态框
+		$("#rolePageBody").on("click", ".checkButton", function(){
+			window.roleId = this.id//获取当前点击元素的roleId，用于查询对应权限，在模态框显示权限
+			$("#assignModal").modal("show")
+			fillAuthTree();//调用方法生成分配权限模态框中全选的树形结构
+		})
+		
+		//更新权限——给模态框按钮添加点击事件
+		$("#assignBtn").click(function(){
+			var authIdArray = []//存放已勾选的节点id
+			//调用ztreobj的方法，获取被勾选的节点
+			var zTreeObj = $.fn.zTree.getZTreeObj("authTreeDemo")
+			var checkedNodes = zTreeObj.getCheckedNodes();
+			
+			for(var i = 0; i < checkedNodes.length; i++){
+				var authId = checkedNodes[i].id
+				authIdArray.push(authId)
+			}
+			
+			var requestBody = {
+					"authIdArray":authIdArray,
+					"roleId":[window.roleId]//[]表示转为数组结构，主要是为了服务器接收数据类型能尽量统一
+			}
+			requestBody = JSON.stringify(requestBody)
+			$.ajax({
+				"url" : "assign/do/role/assign/auth.json",
+				"type" : "post",
+				"data" : requestBody,
+				"contentType": "application/json;charset=UTF-8",
+				"dataType" : "json",
+				"success" : function(response) {
+					var result = response.result
+					if (result == "SUCCESS") {
+						layer.msg("操作成功")
+						generatePage()//重新加载页面
+					}
+					if (result == "FAILED") {
+						layer.msg("操作失败，" + response.message)
+					}
+				},
+				"error" : function(response) {
+					layer.msg(response.status + "，说明信息：" + response.statusText)
+				}
+			})
+			$("#assignModal").modal("hide")
 		})
 		
 		
@@ -255,5 +305,6 @@
 	<%@include file="/WEB-INF/modal-role-add.jsp"%>
 	<%@include file="/WEB-INF/modal-role-edit.jsp"%>
 	<%@include file="/WEB-INF/modal-role-confirm.jsp"%>
+	<%@include file="/WEB-INF/modal-role-assign-auth.jsp" %>
 </body>
 </html>
