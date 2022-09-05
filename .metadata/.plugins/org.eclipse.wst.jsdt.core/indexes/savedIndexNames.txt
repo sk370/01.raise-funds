@@ -1,9 +1,0 @@
-INDEX VERSION 1.4+D:\PracticalExercise\99.Practise\01.raise-funds\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
-586338081.index
-1115808308.index
-4276532362.index
-313813166.index
-506621767.index
-504955104.index
-1732807772.index
-4276532362.index

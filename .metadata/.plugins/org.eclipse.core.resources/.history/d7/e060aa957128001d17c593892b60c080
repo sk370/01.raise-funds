@@ -1,8 +1,0 @@
-package com.atguigu.crowd.test;
-
-import org.springframework.cache.annotation.CacheConfig;
-
-@ContextConfiguration
-public class CrowdTest {
-
-}
