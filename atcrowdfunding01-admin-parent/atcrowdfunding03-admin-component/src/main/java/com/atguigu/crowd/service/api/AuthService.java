@@ -34,4 +34,12 @@ public interface AuthService {
      */
     void saveRoleAuthRelationship(Map<String, List<Integer>> map);
 
+    /**
+     * 用于springsecurity登录
+     * 
+     * @param adminId
+     * @return
+     */
+    List<String> getAssignAuthNameByAdminId(Integer adminId);
+
 }

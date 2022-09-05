@@ -48,4 +48,10 @@ public interface AdminService {
      */
     void updateRelationShip(Integer adminId, List<Integer> roleIdList);
 
+    /**
+     * @param username
+     * @return
+     */
+    Admin getAdminByLoginAcct(String username);
+
 }

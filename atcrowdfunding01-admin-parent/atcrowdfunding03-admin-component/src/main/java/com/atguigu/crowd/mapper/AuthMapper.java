@@ -51,4 +51,9 @@ public interface AuthMapper {
      * @param authIdList
      */
     void insertNewRelationship(@Param("roleId") Integer roleId, @Param("authIdList") List<Integer> authIdList);
+
+    /**
+     * @param adminId
+     */
+    List<String> selectAssignAuthNameByAdminId(Integer adminId);
 }

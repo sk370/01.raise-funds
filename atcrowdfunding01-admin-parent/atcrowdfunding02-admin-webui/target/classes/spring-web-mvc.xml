@@ -41,17 +41,7 @@
 	<!-- 跳转菜单维护界面 -->
 	<mvc:view-controller path="/menu/to/page.html" view-name="menu-page" />
 	
+	<!-- 使用springsecurity后不再使用了 -->
 	<!-- 注册拦截器 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<!-- 配置要拦截的路径：/*表示一层路径，/**表示多层路径 -->
-			<mvc:mapping path="/**" />
-			<!-- 配置要放行的路径和请求： -->
-			<mvc:exclude-mapping path="/admin/to/login/page.html" />
-			<mvc:exclude-mapping path="/admin/do/login.html" />
-			<mvc:exclude-mapping path="/admin/do/logout.html" />
-			<bean class="com.atguigu.crowd.mvc.interceptor.LoginInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
-	
+
 </beans>

@@ -69,6 +69,14 @@
     id, name, title, category_id
   </sql>
   
+    
+  <!--自定义查询：用于springsecurity登录 -->
+  <select id="selectAssignAuthNameByAdminId" resultType="String">
+    SELECT DISTINCT t_auth.`name` FROM t_auth
+	LEFT JOIN inner_role_auth ON t_auth.id=inner_role_auth.auth_id
+	LEFT JOIN inner_admin_role ON inner_role_auth.role_id=inner_admin_role.role_id
+	WHERE inner_admin_role.admin_id=#{adminId} AND t_auth.`name` != "" AND t_auth.`name` IS NOT NULL
+  </select>
   
   <!--自定义查询：利用角色和权限的中间表查询权限id -->
   <select id="selectAssignedAuthIdByRoleId" resultType="int">
