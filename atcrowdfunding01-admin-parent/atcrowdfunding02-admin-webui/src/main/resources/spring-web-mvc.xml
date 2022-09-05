@@ -41,7 +41,7 @@
 	<!-- 跳转菜单维护界面 -->
 	<mvc:view-controller path="/menu/to/page.html" view-name="menu-page" />
 	
-	<!-- 使用springsecurity后不再使用了 -->
+	<!-- 使用springsecurity后不再使用了,相应的异常处理器也都失效了.所以异常处理只剩下基于xml -->
 	<!-- 注册拦截器 -->
 
 </beans>

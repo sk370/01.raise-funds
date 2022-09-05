@@ -10,6 +10,7 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.atguigu.crowd.constant.CrowdConstant;
@@ -35,11 +36,15 @@ import com.github.pagehelper.PageInfo;
 public class AdminServiceImpl implements AdminService {
     @Autowired
     private AdminMapper adminMapper;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Override
     public void saveAdmin(Admin admin) {
         String userPswd = admin.getUserPswd();
-        userPswd = CrowdUtil.md5(userPswd);
+//        userPswd = CrowdUtil.md5(userPswd);//旧版：MD5加密
+        userPswd = passwordEncoder.encode(userPswd);//新版：springsecurity盐值加密
+        admin.setUserPswd(userPswd);
 
         Date date = new Date();
         SimpleDateFormat foramt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

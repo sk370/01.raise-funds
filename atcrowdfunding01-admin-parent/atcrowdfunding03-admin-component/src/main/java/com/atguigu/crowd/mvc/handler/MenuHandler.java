@@ -34,7 +34,7 @@ public class MenuHandler {
     /**
      * 删除节点
      * 
-     * @param menu
+     * @param id
      * @return
      */
     @ResponseBody
