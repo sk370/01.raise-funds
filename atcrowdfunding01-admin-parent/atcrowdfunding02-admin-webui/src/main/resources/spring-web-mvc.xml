@@ -29,7 +29,7 @@
 		<!--保存异常信息，默认在请求域中，此处保存的异常信息key为ex    -->
 		<property name="exceptionAttribute" value="ex"></property>
 	</bean>
-	
+
 	<!-- 跳转登录界面 -->
 	<mvc:view-controller path="/admin/to/login/page.html" view-name="admin-login"/>
 	<!-- 跳转首页：防止登录后刷新重复提交表单 -->

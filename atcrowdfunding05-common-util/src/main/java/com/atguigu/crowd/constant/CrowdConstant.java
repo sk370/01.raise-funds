@@ -19,9 +19,14 @@ public class CrowdConstant {
     public static final String MESSAGE_SYSTEM_ERROR_LOGIN_NOT_UNIQUE = "系统错误，账号不唯一";
     public static final String MESSAGE_LOGIN_MESSAGE_NOT_EQUAL = "密码不匹配，登录失败";
     public static final String MESSAGE_ACCESS_DENIED = "权限不足";
+    public static final String MESSAGE_CODE_NOT_EXISTS = "验证码不存在，请检查手机号或在15分钟内输入";
+    public static final String MESSAGE_CODE_INVALID = "验证码输入错误";
 
     public static final String ATTR_NAME_EXCEPTION = "exception";// 异常
     public static final String ATTR_LOGIN_NAME_ADMIN = "loginAdmin";
+    public static final String ATTR_NAME_LOGIN_MEMBER = "loginMember";
     public static final String ATTR_NAME_PAGE_INFO = "pageInfo";
+    public static final String ATTR_NAME_MESSAGE = "message";
 
+    public static final String REDIS_CODE_PREFIX = "REDIS_CODE_PREFIX_";
 }

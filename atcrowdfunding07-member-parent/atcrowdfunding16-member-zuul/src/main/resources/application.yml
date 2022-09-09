@@ -1,0 +1,23 @@
+server:
+  port: 81
+spring:
+  application:
+    name: atguigu-crowd-zuul
+  # 连接redis
+  redis:
+    host: 192.168.150.137
+  # spring-sesssion设置
+  session:
+    store-type: redis
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+zuul:
+  ignored-services: "*"
+  sensitive-headers: "*"  # 在Zuul向其他微服务重定向时保持原本头信息（请求头、响应头）
+  routes:
+    crowd-portal: # 首页访问规则
+      service-id: atguigu-crowd-auth
+      path: /** # /表示一层 /**表示多层

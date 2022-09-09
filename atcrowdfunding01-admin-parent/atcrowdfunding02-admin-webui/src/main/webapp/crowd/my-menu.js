@@ -26,7 +26,10 @@
 		"success" : function(response) {
 			var result = response.result
 			if (result == "SUCCESS") {
-				layer.msg("操作成功")
+				var str = "操作成功"
+				layer.msg(str)
+				console.log(str)
+				console.log(result)
 				zNodes = response.data
 				$.fn.zTree.init($("#treeDemo"), setting, zNodes)//3. 在页面初始化树形结构
 			}

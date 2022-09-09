@@ -1,0 +1,28 @@
+
+
+spring:
+  application:
+    name: atguigu-crowd-auth
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  # 连接redis
+  redis:
+    host: 192.168.150.137
+  # spring-sesssion
+  session:
+    store-type: redis
+server:
+  port: 4001
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:1000/eureka
+
+short:
+  message:
+    accessKeyId: LTAI5t7vJ5HhNKR2y5RVcirt
+    accessKeySecret: yXeqlGqN6P8LsV9wbCHj2ckf2GUJQr
+    endpoint: dysmsapi.aliyuncs.com
+    signName: 阿里云短信测试
+    templateCode: SMS_154950909
