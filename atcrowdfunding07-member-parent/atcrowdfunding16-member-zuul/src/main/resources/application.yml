@@ -18,6 +18,10 @@ zuul:
   ignored-services: "*"
   sensitive-headers: "*"  # 在Zuul向其他微服务重定向时保持原本头信息（请求头、响应头）
   routes:
-    crowd-portal: # 首页访问规则
+    # 路由规则
+    crowd-project: # project规则
+      service-id: atguigu-crowd-project
+      path: /project/**
+    crowd-portal: # 首页规则
       service-id: atguigu-crowd-auth
       path: /** # /表示一层 /**表示多层

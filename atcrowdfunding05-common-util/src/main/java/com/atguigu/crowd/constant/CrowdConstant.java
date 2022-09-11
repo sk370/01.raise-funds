@@ -21,12 +21,18 @@ public class CrowdConstant {
     public static final String MESSAGE_ACCESS_DENIED = "权限不足";
     public static final String MESSAGE_CODE_NOT_EXISTS = "验证码不存在，请检查手机号或在15分钟内输入";
     public static final String MESSAGE_CODE_INVALID = "验证码输入错误";
+    public static final String MESSAGE_HEADER_PICTURE_UPLOAD_FAILED = "头图上传失败";
+    public static final String MESSAGE_HEADER_PICTURE_EMPTY = "头图不可为空！";
+    public static final String MESSAGE_DETAIL_PICTURE_EMPTY = "详情图不可为空";
+    public static final String MESSAGE_DETAIL_PICTURE_UPLOAD_FAILED = "详情图上传失败";
+    public static final String MESSAGE_TEMPLE_PROJECT_MISSING = "临时存储的projectvo对象丢失";
 
     public static final String ATTR_NAME_EXCEPTION = "exception";// 异常
     public static final String ATTR_LOGIN_NAME_ADMIN = "loginAdmin";
     public static final String ATTR_NAME_LOGIN_MEMBER = "loginMember";
     public static final String ATTR_NAME_PAGE_INFO = "pageInfo";
     public static final String ATTR_NAME_MESSAGE = "message";
+    public static final String ATTR_NAME_TEMPLATE_PROJECT = "projectVo";
 
     public static final String REDIS_CODE_PREFIX = "REDIS_CODE_PREFIX_";
 }

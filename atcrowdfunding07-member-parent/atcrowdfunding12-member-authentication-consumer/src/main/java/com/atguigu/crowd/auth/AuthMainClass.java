@@ -3,7 +3,6 @@ package com.atguigu.crowd.auth;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 /**
  * @author zhuyuqi
@@ -14,7 +13,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  */
 @SpringBootApplication
 @EnableFeignClients("com.atguigu.crowd.api")
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 600, redisNamespace = "ttl")
+// @EnableRedisHttpSession(maxInactiveIntervalInSeconds = 600, redisNamespace = "auth")
 public class AuthMainClass {
     public static void main(String[] args) {
         SpringApplication.run(AuthMainClass.class, args);

@@ -1,6 +1,7 @@
 package com.atguigu.crowd.project.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ConfigurationProperties(prefix = "aliyun.oss")
+@Configuration
 public class OSSProperties {
     private String endPoint;
     private String bucketName;

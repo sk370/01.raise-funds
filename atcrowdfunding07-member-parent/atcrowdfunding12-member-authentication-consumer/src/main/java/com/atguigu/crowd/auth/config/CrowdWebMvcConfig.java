@@ -9,12 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 
  * @author zhuyuqi
  * @version v0.0.1
- * @className WebMvcConfig
+ * @className CrowdWebMvcConfig
  * @description https://developer.aliyun.com/profile/sagwrxp2ua66w
  * @date 2022/09/08 17:33
  */
 @Configuration
-public class WebMvcConfig implements WebMvcConfigurer {
+public class CrowdWebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         String regUrlPath = "/auth/member/to/reg/page.html";// 前端请求地址

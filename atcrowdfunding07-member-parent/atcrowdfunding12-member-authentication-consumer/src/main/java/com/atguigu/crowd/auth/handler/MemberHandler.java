@@ -48,7 +48,7 @@ public class MemberHandler {
     @RequestMapping("auth/member/logout")
     public String logout(HttpSession session) {
         session.invalidate();
-        return "redirect:/";
+        return "redirect:http://localhost:81/";
     }
 
     /**
@@ -88,6 +88,7 @@ public class MemberHandler {
         memberLoginVO.setEmail(memberPO.getEmail());
 
         session.setAttribute(CrowdConstant.ATTR_NAME_LOGIN_MEMBER, memberLoginVO);
+        // return "redirect:/auth/member/to/center/page";//这个重定向会指向auth的端口，和zuul是两个网站，会找不到session
         return "redirect:http://localhost:81/auth/member/to/center/page";
     }
 
@@ -98,7 +99,7 @@ public class MemberHandler {
      * @param modelMap
      * @return
      */
-    @RequestMapping("atuh/do/member/register")
+    @RequestMapping("auth/do/member/register")
     public String register(MemberVO memberVO, ModelMap modelMap) {
         // 1. 获取表单信息
         String phoneNum = memberVO.getPhoneNum();

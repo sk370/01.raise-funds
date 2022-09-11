@@ -18,10 +18,10 @@ public class AccessPassResources {
         PASS_RES_SET.add("/");// 首页
         PASS_RES_SET.add("/auth/member/to/reg/page.html");// 注册页面
         PASS_RES_SET.add("/auth/member/to/login/page.html");// 登录页面
-        PASS_RES_SET.add("auth/member/logout");// 退出登录
+        PASS_RES_SET.add("/auth/member/logout");// 退出登录
         PASS_RES_SET.add("/auth/member/do/login");// 执行登录
-        PASS_RES_SET.add("atuh/do/member/register");// 执行注册
-        PASS_RES_SET.add("auth/member/send/short/message.json");// 短信认证
+        PASS_RES_SET.add("/auth/do/member/register");// 执行注册
+        PASS_RES_SET.add("/auth/member/send/short/message.json");// 短信认证
     }
     public static final Set<String> STATIC_RES_SET = new HashSet<>();
 
