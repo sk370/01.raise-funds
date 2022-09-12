@@ -1,5 +1,8 @@
 package com.atguigu.crowd.mysql.service;
 
+import java.util.List;
+
+import com.atguigu.crowd.entity.vo.PortalTypeVO;
 import com.atguigu.crowd.entity.vo.ProjectVO;
 
 /**
@@ -11,4 +14,11 @@ import com.atguigu.crowd.entity.vo.ProjectVO;
  */
 public interface ProjectService {
     void saveProject(ProjectVO projectVO, Integer memberId);
+
+    /**
+     * 首页展示数据
+     * 
+     * @return
+     */
+    List<PortalTypeVO> getPortalTypeVO();
 }

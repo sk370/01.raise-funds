@@ -15,10 +15,7 @@ import com.atguigu.crowd.entity.po.MemberConfirmInfoPO;
 import com.atguigu.crowd.entity.po.MemberLaunchInfoPO;
 import com.atguigu.crowd.entity.po.ProjectPO;
 import com.atguigu.crowd.entity.po.ReturnPO;
-import com.atguigu.crowd.entity.vo.MemberConfirmInfoVO;
-import com.atguigu.crowd.entity.vo.MemberLauchInfoVO;
-import com.atguigu.crowd.entity.vo.ProjectVO;
-import com.atguigu.crowd.entity.vo.ReturnVO;
+import com.atguigu.crowd.entity.vo.*;
 import com.atguigu.crowd.mysql.mapper.*;
 import com.atguigu.crowd.mysql.service.ProjectService;
 
@@ -96,5 +93,10 @@ public class ProjectServiceImpl implements ProjectService {
         memberConfirmInfoPO.setMemberid(memberId);
         memberConfirmInfoPOMapper.insert(memberConfirmInfoPO);
 
+    }
+
+    @Override
+    public List<PortalTypeVO> getPortalTypeVO() {
+        return projectPOMapper.selectPortalTypeVOList();
     }
 }

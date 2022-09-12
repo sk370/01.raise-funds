@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.atguigu.crowd.entity.po.ProjectPO;
 import com.atguigu.crowd.entity.po.ProjectPOExample;
+import com.atguigu.crowd.entity.vo.PortalTypeVO;
 
 public interface ProjectPOMapper {
     int countByExample(ProjectPOExample example);
@@ -30,8 +31,13 @@ public interface ProjectPOMapper {
 
     int updateByPrimaryKey(ProjectPO record);
 
+    // 自定义方法1
     void insertTypeRelationship(@Param("typeIdList") List<Integer> typeIdList,
         @Param("projectPOId") Integer projectPOId);
 
+    // 自定义方法2
     void insertTagRelationship(@Param("tagIdList") List<Integer> tagIdList, @Param("projectPOId") Integer projectPOId);
+
+    // 自定义方法3
+    List<PortalTypeVO> selectPortalTypeVOList();
 }

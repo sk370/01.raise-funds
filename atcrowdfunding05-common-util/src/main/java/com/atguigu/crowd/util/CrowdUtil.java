@@ -75,7 +75,8 @@ public class CrowdUtil {
             // 从原始文件名中获取文件扩展名
             String extensionName = originalName.substring(originalName.lastIndexOf("."));
             // 使用目录、 文件主体名称、 文件扩展名称拼接得到对象名称
-            String objectName = folderName + "/" + fileMainName + extensionName;
+            // String objectName = folderName + "/" + fileMainName + extensionName;//优化前写法
+            String objectName = fileMainName + extensionName;
 
             // 把字符串存入OSS，Object的名称为objectName。
             PutObjectResult putObjectResult = ossClient.putObject(bucketName, objectName, inputStream);
