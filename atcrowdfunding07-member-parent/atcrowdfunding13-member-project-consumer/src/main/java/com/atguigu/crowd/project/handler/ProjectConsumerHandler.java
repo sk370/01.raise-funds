@@ -8,7 +8,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,10 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.atguigu.crowd.api.MySqlRemoteService;
 import com.atguigu.crowd.constant.CrowdConstant;
-import com.atguigu.crowd.entity.vo.MemberConfirmInfoVO;
-import com.atguigu.crowd.entity.vo.MemberLoginVO;
-import com.atguigu.crowd.entity.vo.ProjectVO;
-import com.atguigu.crowd.entity.vo.ReturnVO;
+import com.atguigu.crowd.entity.vo.*;
 import com.atguigu.crowd.project.config.OSSProperties;
 import com.atguigu.crowd.util.CrowdUtil;
 import com.atguigu.crowd.util.ResultEntity;
@@ -37,6 +36,23 @@ public class ProjectConsumerHandler {
     private OSSProperties ossProperties;
     @Autowired
     private MySqlRemoteService mySqlRemoteService;
+
+    /**
+     * 项目详情页
+     * 
+     * @param projectId
+     * @param model
+     * @return
+     */
+    @RequestMapping("/get/project/detail/{projectId}")
+    public String getProjcetDetail(@PathVariable("projectId") Integer projectId, Model model) {
+        ResultEntity<DetailProjectVO> resultEntity = mySqlRemoteService.getDetailProjectVORemote(projectId);
+        if (ResultEntity.SUCCESS.equals(resultEntity.getResult())) {
+            DetailProjectVO detailProjectVO = resultEntity.getData();
+            model.addAttribute("detailProjectVO", detailProjectVO);
+        }
+        return "project-show-detail";
+    }
 
     /**
      * 保存发布项目时保存的信息

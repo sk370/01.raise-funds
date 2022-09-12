@@ -2,6 +2,7 @@ package com.atguigu.crowd.mysql.service;
 
 import java.util.List;
 
+import com.atguigu.crowd.entity.vo.DetailProjectVO;
 import com.atguigu.crowd.entity.vo.PortalTypeVO;
 import com.atguigu.crowd.entity.vo.ProjectVO;
 
@@ -21,4 +22,12 @@ public interface ProjectService {
      * @return
      */
     List<PortalTypeVO> getPortalTypeVO();
+
+    /**
+     * 项目详情页数据
+     * 
+     * @param projectId
+     * @return
+     */
+    DetailProjectVO getDetailProjectVO(Integer projectId);
 }

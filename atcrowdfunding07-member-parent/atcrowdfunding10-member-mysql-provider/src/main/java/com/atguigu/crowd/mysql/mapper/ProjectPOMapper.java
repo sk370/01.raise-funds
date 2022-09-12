@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.atguigu.crowd.entity.po.ProjectPO;
 import com.atguigu.crowd.entity.po.ProjectPOExample;
+import com.atguigu.crowd.entity.vo.DetailProjectVO;
 import com.atguigu.crowd.entity.vo.PortalTypeVO;
 
 public interface ProjectPOMapper {
@@ -40,4 +41,7 @@ public interface ProjectPOMapper {
 
     // 自定义方法3
     List<PortalTypeVO> selectPortalTypeVOList();
+
+    // 自定义方法4
+    DetailProjectVO selectDetailProjectVO(Integer projectId);
 }

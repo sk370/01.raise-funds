@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.atguigu.crowd.entity.po.MemberPO;
+import com.atguigu.crowd.entity.vo.DetailProjectVO;
 import com.atguigu.crowd.entity.vo.PortalProjectVO;
 import com.atguigu.crowd.entity.vo.PortalTypeVO;
 import com.atguigu.crowd.mysql.mapper.MemberPOMapper;
@@ -39,6 +40,16 @@ public class MySqlTest {
     private ProjectPOMapper projectPOMapper;
     private Logger logger = LoggerFactory.getLogger(MySqlTest.class);
 
+    @Test
+    public void testLoadDetailProjectVO() {
+        Integer projectId = 6;
+        DetailProjectVO detailProjectVO = projectPOMapper.selectDetailProjectVO(projectId);
+        logger.info(detailProjectVO.toString());
+    }
+
+    /**
+     * 首页数据测试
+     */
     @Test
     public void testLoadTypeData() {
         List<PortalTypeVO> portalProjectTypeList = projectPOMapper.selectPortalTypeVOList();

@@ -1,5 +1,6 @@
 package com.atguigu.crowd.mysql.service.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -98,5 +99,45 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<PortalTypeVO> getPortalTypeVO() {
         return projectPOMapper.selectPortalTypeVOList();
+    }
+
+    @Override
+    public DetailProjectVO getDetailProjectVO(Integer projectId) {
+        DetailProjectVO detailProjectVO = projectPOMapper.selectDetailProjectVO(projectId);
+        // 1. 将项目状态转换为对应文本
+        Integer status = detailProjectVO.getStatus();
+        switch (status) {
+            case 0:
+                detailProjectVO.setStatusText("审核中");
+                break;
+            case 1:
+                detailProjectVO.setStatusText("众筹中");
+                break;
+            case 2:
+                detailProjectVO.setStatusText("众筹成功");
+                break;
+            case 3:
+                detailProjectVO.setStatusText("失败已关闭");
+                break;
+            default:
+                break;
+        }
+        // 2. 根据项目发布时间及项目周期，计算剩余天数
+        String deployDate = detailProjectVO.getDeployDate();// yyyy-MM-dd
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date deployDay = simpleDateFormat.parse(deployDate);
+            long deployDayTimeStamp = deployDay.getTime();// 发布日期的时间戳
+            Date currentDate = new Date();// 当前日期
+            long currentTimeStamp = currentDate.getTime();// 当前日期的时间戳
+            long passTimeStamp = currentTimeStamp - deployDayTimeStamp;// 已经度过的毫秒数
+            long passDays = passTimeStamp / 1000 / 60 / 60 / 24;// 已经度过的天数
+            Integer totalDay = detailProjectVO.getDay();// 项目总天数
+            Integer lastDays = (int)(totalDay - passDays);// 剩余天数
+            detailProjectVO.setLastDay(lastDays);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return detailProjectVO;
     }
 }
