@@ -51,7 +51,7 @@ public class ProjectConsumerHandler {
             DetailProjectVO detailProjectVO = resultEntity.getData();
             model.addAttribute("detailProjectVO", detailProjectVO);
         }
-        return "project-show-detail";
+        return "project-detail";
     }
 
     /**

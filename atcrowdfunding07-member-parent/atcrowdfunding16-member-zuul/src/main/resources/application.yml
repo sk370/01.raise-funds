@@ -22,6 +22,9 @@ zuul:
     crowd-project: # project规则
       service-id: atguigu-crowd-project
       path: /project/**
+    crowd-order: # order规则
+      service-id: atguigu-crowd-order
+      path: /order/**
     crowd-portal: # 首页规则
       service-id: atguigu-crowd-auth
       path: /** # /表示一层 /**表示多层

@@ -86,9 +86,9 @@ public class CrowdUtil {
             // 根据响应状态码判断请求是否成功
             if (response == null) {
                 // 拼接访问刚刚上传的文件的路径
-                String ossFileAccessPath = bucketName + "/" + objectName;
+                // String ossFileAccessPath = objectName;
                 // 当前方法返回成功
-                return ResultEntity.successWithData(ossFileAccessPath);
+                return ResultEntity.successWithData(objectName);
             } else {
                 // 获取响应状态码
                 int statusCode = response.getStatusCode();
