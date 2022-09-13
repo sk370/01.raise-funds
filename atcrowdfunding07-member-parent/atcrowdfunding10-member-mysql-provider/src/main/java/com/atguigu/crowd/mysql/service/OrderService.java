@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.atguigu.crowd.entity.vo.AddressVO;
 import com.atguigu.crowd.entity.vo.OrderProjectVO;
+import com.atguigu.crowd.entity.vo.OrderVO;
 
 /**
  * @author zhuyuqi
@@ -19,4 +20,6 @@ public interface OrderService {
     List<AddressVO> getAddressVOList(Integer memberId);
 
     void saveAddress(AddressVO addressVO);
+
+    void saveOrder(OrderVO orderVO);
 }

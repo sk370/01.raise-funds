@@ -11,8 +11,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.atguigu.crowd.entity.po.AddressPO;
 import com.atguigu.crowd.entity.po.AddressPOExample;
+import com.atguigu.crowd.entity.po.OrderPO;
+import com.atguigu.crowd.entity.po.OrderProjectPO;
 import com.atguigu.crowd.entity.vo.AddressVO;
 import com.atguigu.crowd.entity.vo.OrderProjectVO;
+import com.atguigu.crowd.entity.vo.OrderVO;
 import com.atguigu.crowd.mysql.mapper.AddressPOMapper;
 import com.atguigu.crowd.mysql.mapper.OrderPOMapper;
 import com.atguigu.crowd.mysql.mapper.OrderProjectPOMapper;
@@ -60,5 +63,19 @@ public class OrderServiceImpl implements OrderService {
         AddressPO addressPO = new AddressPO();
         BeanUtils.copyProperties(addressVO, addressPO);
         addressPOMapper.insert(addressPO);
+    }
+
+    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW, rollbackFor = Exception.class)
+    public void saveOrder(OrderVO orderVO) {
+        OrderPO orderPO = new OrderPO();
+        BeanUtils.copyProperties(orderVO, orderPO);
+        orderPOMapper.insert(orderPO);
+        Integer orderId = orderPO.getId();
+
+        OrderProjectPO orderProjectPO = new OrderProjectPO();
+        BeanUtils.copyProperties(orderVO.getOrderProjectVO(), orderProjectPO);
+        orderProjectPO.setOrderId(orderId);
+        orderProjectPOMapper.insert(orderProjectPO);
     }
 }

@@ -17,7 +17,7 @@ eureka:
 aliyun:
   oss:
     endpoint: http://oss-cn-chengdu.aliyuncs.com
-    accessKeyId: LTAI5t65mPsBz6PhbREpcsAk
-    accessKeySecret: hWKPQUYZKm0uwy03Cw2Aizk3aVHlol
+    accessKeyId: #
+    accessKeySecret: #
     bucketName: crowd-project-brand
 
